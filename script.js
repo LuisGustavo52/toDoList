@@ -1,41 +1,13 @@
 const minhaLista = new LinkedList();
 
- // Função para adicionar um elemento no Inicio
- function adicionarElementoInicio() {
-    const descricao = document.getElementById("txtnovaTarefa").value.trim();
-    const prioridade = document.getElementById("txtnovaPrioridade").value.trim();
-
-    const novaTarefa = new Tarefa(descricao,prioridade,obterDataAtual(),obterHoraAtual());
-    minhaLista.addFirst(novaTarefa);
-    console.log(minhaLista.toString());
-    //limpar input
-    document.getElementById("txtnovaTarefa").value = "";
-    document.getElementById("txtnovaPrioridade").value = "";
-    document.getElementById("txtnovaTarefa").focus();
-    atualizarLista();
- }
- //---------
-  function adicionarElementoFinal() {
-    const descricao = document.getElementById("txtnovaTarefa").value.trim();
-    const prioridade = document.getElementById("txtnovaPrioridade").value.trim();
-
-    const novaTarefa = new Tarefa(descricao,prioridade,obterDataAtual(),obterHoraAtual());
-    minhaLista.addLast(novaTarefa);
-    console.log(minhaLista.toString());
-    //limpar input
-    document.getElementById("txtnovaTarefa").value = "";
-    document.getElementById("txtnovaPrioridade").value = "";
-    document.getElementById("txtnovaTarefa").focus();
-    atualizarLista();
-  }
-
   //--------------------------------------------------------------------------------------------
   function adicionarIndice() {
     const descricao = document.getElementById("txtnovaTarefa").value.trim();
-    const prioridade = document.getElementById("txtnovaPrioridade").value.trim();
-    const posicao =parseInt( document.getElementById("txtIndice").value.trim());
+    const posicao = parseInt( document.getElementById("txtnovaPrioridade").value.trim());
 
     const novaTarefa = new Tarefa(descricao,prioridade,obterDataAtual(),obterHoraAtual());
+    let index = 0;
+
     minhaLista.addAtIndex(posicao,novaTarefa);
     
     //limpar input
@@ -48,8 +20,8 @@ const minhaLista = new LinkedList();
  
 //--------------------------------------------------------------------------------------------
  // Função para remover o primeiro elemento da lista
- function removerElementoInicio() {
-    if(!minhaLista.isEmpty()){
+ function removerElemenInicio() {
+    if(!minhaLista.isEmptoty()){
       const tarefaRealizada = minhaLista.removeFirst();
       mostrarMensagemRemocao(tarefaRealizada);
       atualizarLista();
@@ -65,6 +37,17 @@ const minhaLista = new LinkedList();
   if(!minhaLista.isEmpty()){
     const tarefaRealizada = minhaLista.removeLast();
     mostrarMensagemRemocao(tarefaRealizada);
+    atualizarLista();
+  }
+  else{
+    alert("Lista de Tarefas Vazia");
+  }
+}
+
+function mostrarTarefaMaisAntiga(){
+  if(!minhaLista.isEmpty()){
+    const tarefaMaisAntiga = minhaLista.getLast();
+    mostrarMensagemRemocao(tarefaMaisAntiga);
     atualizarLista();
   }
   else{

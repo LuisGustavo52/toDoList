@@ -26,20 +26,14 @@
           <br />
           <label for="lblnovaPrioridade">Prioridade:</label>
           <br />
-          <input type="text" class="form-control" id="txtnovaPrioridade">
+          <input type="number" class="form-control" id="txtnovaPrioridade">
           <br />
-          <label for="lblIndice">Indice:</label>
-
-        <br />
-        <input type="text" class="form-control" id="txtIndice">
         
         <br />
-        <button class="btn btn-info" onclick="adicionarElementoInicio()">Adicionar Inicio</button>
-        <button class="btn btn-info" onclick="adicionarElementoFinal()">Adicionar Fim</button>
-        <button class="btn btn-info" onclick="adicionarIndice()">Adicionar no Índice</button>
+        <button class="btn btn-info" onclick="adicionarIndice()">Adicionar Tarefa</button>
 
-        <button class="btn btn-warning" onclick="removerElementoInicio()">Retirar do Inicio</button>
-        <button class="btn btn-warning" onclick="removerElementoFinal()">Retirar do Final</button>
+        <button class="btn btn-warning" onclick="removerElementoInicio()">Resolver tarefa</button>
+        <button class="btn btn-warning" onclick="mostrarTarefaMaisAntiga()">Tarefa mais antiga</button>
 
         <br /><br />
         <button class="btn btn-warning" onclick="saveLinkedListToLocalStorage()">Salvar</button>
