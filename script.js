@@ -5,10 +5,33 @@ const minhaLista = new LinkedList();
     const descricao = document.getElementById("txtnovaTarefa").value.trim();
     const posicao = parseInt( document.getElementById("txtnovaPrioridade").value.trim());
 
-    const novaTarefa = new Tarefa(descricao,prioridade,obterDataAtual(),obterHoraAtual());
+    const novaTarefa = new Tarefa(descricao,posicao,obterDataAtual(),obterHoraAtual());
     let index = 0;
 
-    minhaLista.addAtIndex(posicao,novaTarefa);
+    if(minhaLista.isEmpty){
+      minhaLista.addFirst(novaTarefa);
+    }
+    
+    else{
+      let tarefa = minhaLista.head;
+      for(i=0, i<minhaLista.length, i++){
+        if(posicao < tarefa.prioridade){
+          if(tarefa.prox == null){
+            index = i;
+            i = minhaLista.length + 1;
+          }
+
+        }else if (posicao > tarefa.prioridade){
+
+        }else{
+
+        }
+      tarefa = tarefa.prox;
+    }
+  }
+
+
+    minhaLista.addAtIndex(index,novaTarefa);
     
     //limpar input
     document.getElementById("txtnovaTarefa").value = "";
