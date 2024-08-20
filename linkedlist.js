@@ -46,6 +46,7 @@ class LinkedList{
         return true;
     }
 
+
     removeFirst(){
         const dadoRemovido = this.head.dado;
         this.head = this.head.prox;
@@ -71,6 +72,12 @@ class LinkedList{
     getLast(){
       return this.tail.dado;
     }
+
+    getProx(no){
+      const noUsado = no;
+      return noUsado.prox;
+    }
+
      getFirst(){
         return this.head.dado;
      }

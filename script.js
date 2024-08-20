@@ -8,30 +8,38 @@ const minhaLista = new LinkedList();
     const novaTarefa = new Tarefa(descricao,posicao,obterDataAtual(),obterHoraAtual());
     let index = 0;
 
-    if(minhaLista.isEmpty){
+    if(minhaLista.isEmpty()){
       minhaLista.addFirst(novaTarefa);
+      console.log("vazia")
     }
     
     else{
-      let tarefa = minhaLista.head;
-      for(i=0, i<minhaLista.length, i++){
+      let i = 0;
+      for(const tarefa of minhaLista){
+        console.log("Index script:"+index);
         if(posicao < tarefa.prioridade){
-          if(tarefa.prox == null){
+          if(minhaLista.getProx == null){
             index = i;
-            i = minhaLista.length + 1;
+            console.log("caso < prox null");
+          }else if(posicao <= minhaLista.getProx.prioridade){
+            index = i;
+            break
           }
 
         }else if (posicao > tarefa.prioridade){
+          index = i+1;
+          console.log("caso >");
 
         }else{
-
+          index = i;
+          console.log("caso =");
+          console.log("posição:" +posicao);
+          console.log("tarefa.prioridade"+tarefa.prioridade);
         }
-      tarefa = tarefa.prox;
+        i++;
     }
-  }
-
-
     minhaLista.addAtIndex(index,novaTarefa);
+  }
     
     //limpar input
     document.getElementById("txtnovaTarefa").value = "";
@@ -43,8 +51,8 @@ const minhaLista = new LinkedList();
  
 //--------------------------------------------------------------------------------------------
  // Função para remover o primeiro elemento da lista
- function removerElemenInicio() {
-    if(!minhaLista.isEmptoty()){
+ function removerElementoInicio() {
+    if(!minhaLista.isEmpty()){
       const tarefaRealizada = minhaLista.removeFirst();
       mostrarMensagemRemocao(tarefaRealizada);
       atualizarLista();
@@ -70,7 +78,7 @@ const minhaLista = new LinkedList();
 function mostrarTarefaMaisAntiga(){
   if(!minhaLista.isEmpty()){
     const tarefaMaisAntiga = minhaLista.getLast();
-    mostrarMensagemRemocao(tarefaMaisAntiga);
+    mostrarMensagemUltimaTarefa(tarefaMaisAntiga);
     atualizarLista();
   }
   else{
@@ -82,6 +90,12 @@ function mostrarTarefaMaisAntiga(){
 function mostrarMensagemRemocao(tarefaRealizada) {
     const mensagem = document.getElementById("mensagem-remocao");
     mensagem.innerHTML ="Tarefa realizada: "+ tarefaRealizada.descricao;
+    mensagem.style.display = "block";
+  }
+//--------------------------------------------------------------------------------------------
+function mostrarMensagemUltimaTarefa(tarefaRealizada) {
+    const mensagem = document.getElementById("mensagem-remocao");
+    mensagem.innerHTML ="Tarefa mais antiga: "+ tarefaRealizada.descricao;
     mensagem.style.display = "block";
   }
 //-------------------------------------------------------------------------------------------- 
