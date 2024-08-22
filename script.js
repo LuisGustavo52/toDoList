@@ -77,8 +77,11 @@ const minhaLista = new LinkedList();
 
 function mostrarTarefaMaisAntiga(){
   if(!minhaLista.isEmpty()){
-    const tarefaMaisAntiga = minhaLista.getLast();
-    mostrarMensagemUltimaTarefa(tarefaMaisAntiga);
+    let dataMaisAntiga = minhaLista.getFirst();
+    for(const tarefa of minhaLista){
+      dataMaisAntiga = comparaTarefasDataHora(tarefa, dataMaisAntiga)
+    }
+    mostrarMensagemUltimaTarefa(dataMaisAntiga);
     atualizarLista();
   }
   else{
